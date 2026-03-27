@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+}
+
+glassmorphism {
+  --glass: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.dark body {
+  background: #03040a;
+}
+
+.glassmorphism {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+
+.cursor-glow {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  background: rgba(14, 165, 233, 0.85);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.6), 0 0 40px rgba(14, 165, 233, 0.45);
+  z-index: 9999;
+}
+
+.blink {
+  display: inline-block;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.particle-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, .22), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(14, 165, 233, .22), transparent 40%),
+    linear-gradient(135deg, #070a1a 0%, #0f132d 100%);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle-background::before,
+.particle-background::after {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  left: -30%;
+  top: -30%;
+  background: radial-gradient(circle, rgba(99, 102, 241, .28) 0%, transparent 50%);
+  animation: float 18s infinite linear;
+}
+
+.particle-background::after {
+  background: radial-gradient(circle, rgba(14, 165, 233, .28) 0%, transparent 45%);
+  animation-duration: 22s;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(25%, 20%) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
